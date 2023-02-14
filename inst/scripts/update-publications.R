@@ -26,7 +26,7 @@ library("rentrez")
 library("purrr")
 library("stringr")
 ## Required, but not fully loaded
-## readr, reticulate, glue, easyPubMed, dccvalidator
+## readr, reticulate, glue
 
 ## Setup -----------------------------------------------------------------------
 
@@ -108,7 +108,7 @@ dat <- munge_pubmed(dat)
 grants$grantSerialNumber <- as.character(grants$grantSerialNumber)
 
 # Join dat and grants table by grantSerialNumber
-dat <- dplyr::right_join(grants, dat, by = "grantSerialNumber")
+dat <- dplyr::right_join(grants, dat, by = "grantSerialNumber", multiple = "all")
 
 # Some pubmedIDs show up multiple times under different grants
 # Need to capture this information in a single row of information so it isn't duplicated
